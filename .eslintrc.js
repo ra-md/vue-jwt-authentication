@@ -17,7 +17,8 @@ module.exports = {
     'no-tabs': 'off',
     'no-trailing-spaces': 'off',
     'no-mixed-spaces-and-tabs': 'off',
-    'semi': ['error', 'always']
+    'semi': ['error', 'always'],
+    'space-before-function-paren': 'off'
   },
   overrides: [
     {

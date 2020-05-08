@@ -1,12 +1,23 @@
 <template>
-	<div class="auth">
-		<div class="card">
-			<h2>SignIn</h2>
-			<form>
-				<input type="email" placeholder="Email">
-				<input type="password" placeholder="Password">
-				<button class="btn">Submit</button>
-			</form>
-		</div>
+	<div>
+	<Form @submit="signin">
+		<h2>SignIn</h2>
+	</Form>
 	</div>
 </template>
+
+<script>
+	import Form from '@/components/Form';
+
+	export default {
+		name: 'SignIn',
+		components: {
+			Form
+		},
+		methods: {
+			signin(value) {	
+				console.log(value);
+			}
+		}
+	};
+</script>
