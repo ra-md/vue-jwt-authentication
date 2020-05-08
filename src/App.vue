@@ -1,32 +1,85 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Header/>
     <router-view/>
   </div>
 </template>
 
+<script>
+  import Header from '@/components/Header.vue';
+
+  export default {
+    components: {
+      Header
+    }
+  };
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  .btn {
+    background: blue;
+    border: none;
+    padding: .7em;
+    color: white;
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .card {
+    padding: 2em;
+    background: white;
+    box-shadow: 0 3px 7px 1px rgba(0,0,0,0.3);
+    border-radius: 3px;
+  }
+
+  .auth {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .auth h1 {
+    margin-bottom: .5em;
+  }
+
+  .auth form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .auth input {
+    margin: 1em 0;
+    background: #f5f5f5;
+    border-radius: 5px;
+    padding: 0.7em;
+    border: 2px solid #929292;
+  }
+
+  .auth input:focus {
+    border-color: blue;
+    outline: none;
+  }
+
+  .auth .btn:focus {
+    outline: none;
+  }
+
+  @media (max-width: 667px) {
+    .auth {
+      width: 100%;
+    }
+  }
 </style>
