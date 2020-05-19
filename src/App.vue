@@ -11,6 +11,7 @@
   import Header from '@/components/Header.vue';
 
   export default {
+    name: 'App',
     components: {
       Header
     }
@@ -24,10 +25,16 @@
     box-sizing: border-box;
   }
 
+  :root {
+    --primary-color: blue;
+    --font-color: black;
+  }
+
   body {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: var(--font-color);
   }
 
   .container {
@@ -36,11 +43,11 @@
   }
   
   .btn {
-    background: blue;
+    background: var(--primary-color);
     border: none;
     padding: .7em;
     color: white;
     border-radius: 4px;
-    transition: 0.5s;
+    cursor: pointer;
   }
 </style>

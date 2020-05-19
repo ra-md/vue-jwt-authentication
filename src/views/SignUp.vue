@@ -10,12 +10,12 @@
 	import Form from '@/components/Form';
 
 	export default {
-		name: 'SignUn',
+		name: 'SignUp',
 		components: {
 			Form
 		},
 		methods: {
-			signup(value) {	
+			signup(value) {
 				console.log(value);
 			}
 		}

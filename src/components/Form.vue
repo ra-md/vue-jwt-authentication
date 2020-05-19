@@ -32,6 +32,7 @@
 	.card {
     padding: 2em;
     background: white;
+    color: var(--font-color);
     box-shadow: 0 3px 7px 1px rgba(0,0,0,0.3);
     border-radius: 4px;
   }
@@ -46,17 +47,13 @@
     text-align: center;
   }
 
-  .auth h1 {
-    margin-bottom: .5em;
-  }
-
-  .auth form {
+  form {
     display: flex;
     flex-direction: column;
   }
 
-  .auth input[type=password],
-  .auth input[type=email] {
+  input[type=password],
+  input[type=email] {
     margin: .7em 0;
     background: #f5f5f5;
     border-radius: 4px;
@@ -64,21 +61,17 @@
     border: 2px solid #cecece;
   }
 
-  .auth input:focus {
-    border-color: blue;
+  input:focus {
+    border-color: var(--primary-color);
     outline: none;
   }
 
-  .auth .btn {
+  .btn {
     margin-top: .7em;
   }
 
-  .auth .btn:hover {
+  .btn:focus {
     background-color: black;
-  }
-
-  .auth .btn:focus {
-    outline: none;
   }
 
   @media (max-width: 768px) {
