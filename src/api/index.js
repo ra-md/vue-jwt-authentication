@@ -1,9 +1,11 @@
 import axios from 'axios';
+import jwtService from '@/util/jwtService';
+
 const API_URL = 'http://localhost:3000';
 const api = axios.create({ baseURL: API_URL });
 
 function setHeader() {
-	api.default.headers.common.Authorization = 'TOKEN';
+	api.default.headers.common.Authorization = `Token ${jwtService.getToken()}`;
 };
 
 export function userSignin({ email, password }) {
@@ -15,10 +17,7 @@ export function userSignin({ email, password }) {
 };
 
 export function userSignup({ email, password }) {
-	return api.post('/register', {
-		email,
-		password
-	});
+	return api.post('/register', { email, password });
 };
 
 export function getCustomers() {

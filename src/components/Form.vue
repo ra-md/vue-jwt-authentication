@@ -5,6 +5,9 @@
 			<form @submit.prevent="submit">
 				<input v-model="email" type="email" placeholder="Email">
 				<input v-model="password" type="password" placeholder="Password">
+        <div v-if="errors">
+          <p>{{ errors }}</p>
+        </div>
 				<input class="btn" type="submit">
 			</form>
 		</div>
@@ -12,6 +15,8 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
 	export default {
 		name: 'Form',
 		data() {
@@ -20,6 +25,11 @@
 				password: ''
 			};
 		},
+    computed: {
+      ...mapState({
+        errors: state => state.auth.errors
+      })
+    },
 		methods: {
 			submit() {
 				this.$emit('submit', { email: this.email, password: this.password });
