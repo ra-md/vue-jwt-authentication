@@ -17,7 +17,7 @@ const mutations = {
 
 const actions = {
 	[REGISTER]({ commit }, credentials) {
-		return new Promise((resolve) => {
+		return new Promise((resolve, reject) => {
 			commit(SET_ERROR, null);
 			userSignup(credentials)
 			.then(() => {

@@ -5,8 +5,8 @@
 			<form @submit.prevent="submit">
 				<input v-model="email" type="email" placeholder="Email">
 				<input v-model="password" type="password" placeholder="Password">
-        <div v-if="errors">
-          <p>{{ errors }}</p>
+        <div v-show="errors">
+          <p class="errors-message">{{ errors }}</p>
         </div>
 				<input class="btn" type="submit">
 			</form>
@@ -16,6 +16,7 @@
 
 <script>
   import { mapState } from 'vuex';
+  import { SET_ERROR } from '@/store/mutations.type';
 
 	export default {
 		name: 'Form',
@@ -30,10 +31,16 @@
         errors: state => state.auth.errors
       })
     },
+    mounted() {
+      this.removeErrorMessage();
+    },
 		methods: {
 			submit() {
 				this.$emit('submit', { email: this.email, password: this.password });
-			}
+			},
+      removeErrorMessage() {
+        this.$store.commit(SET_ERROR, null);
+      }
 		}
 	};
 </script>
@@ -82,6 +89,10 @@
 
   .btn:focus {
     background-color: black;
+  }
+
+  .errors-message {
+    color: red;
   }
 
   @media (max-width: 768px) {
