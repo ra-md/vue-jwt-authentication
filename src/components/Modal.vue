@@ -1,5 +1,5 @@
 <template>
-	<div v-show="modal" class="overlay">
+	<div v-show="modal" class="modal-overlay">
 		<div class="modal">
 			<slot name="content"></slot>
 			<slot name="button"></slot>
@@ -24,7 +24,7 @@
 </script>
 
 <style>
-	.overlay {
+	.modal-overlay {
 		background: rgba(0,0,0,0.5);
     position: fixed;
     top: 0;

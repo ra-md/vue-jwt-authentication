@@ -27,6 +27,7 @@
 
   :root {
     --primary-color: blue;
+    --danger-color: red;
     --font-color: black;
   }
 

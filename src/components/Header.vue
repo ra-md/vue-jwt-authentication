@@ -5,16 +5,38 @@
 				<h2><router-link to="/">VueJwt</router-link></h2>
 			</div>
 			<nav>
-		    <router-link to="/signin">SignIn</router-link> |
-		    <router-link to="/signup">SignUp</router-link>
+				<div v-if="isAuthenticated">
+					<button class="btn">Create Customer</button>
+					<button @click="logout" class="btn logout-btn">Log Out</button>
+				</div>
+				<div v-else>
+					<button class="btn">
+				    <router-link to="/login">Sign In</router-link>
+					</button>
+					<button class="btn">
+				    <router-link to="/register">Sign Up</router-link>
+					</button>
+				</div>
 			</nav>
 		</div>
   </header>
 </template>
 
 <script>
+	import { LOGOUT } from '@/store/actions.type';
+
 	export default {
-		name: 'Header'
+		name: 'Header',
+		computed: {
+			isAuthenticated() {
+				return this.$store.state.auth.isAuthenticated;
+			}
+		},
+		methods: {
+			logout() {
+				this.$store.dispatch(LOGOUT);
+			}
+		}
 	};
 </script>
 
@@ -35,12 +57,27 @@
 	}
 
 	a {
-		color: black;
 		text-decoration: none;
 	}
 
-	a:hover {
-		color: blue;
+	.logo a {
+		color: black;
+	}
+
+	.logo a:hover {
+		color: var(--primary-color);
+	}
+
+	.btn {
+		margin-left: 1em;
+	}
+
+	.btn a {
+		color: white;
+	}
+
+	.logout-btn {
+		background-color: var(--danger-color);
 	}
 
 </style>

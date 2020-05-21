@@ -1,14 +1,14 @@
 <template>
 	<div>
-	<Form @submit="signup">
-		<h2>SignUp</h2>
+	<Form @submit="register">
+		<h2>Register</h2>
 	</Form>
 	<Modal ref="modal">
 		<template v-slot:content>
 			<p class="modal-text">akun berhasil dibuat silahkan login</p>
 		</template>
 		<template v-slot:button>
-			<button class="btn" @click="$router.push('/signin')">ok</button>
+			<button class="btn" @click="$router.push('/login')">ok</button>
 		</template>
 	</Modal>
 	</div>
@@ -20,17 +20,17 @@
 	import Modal from '@/components/Modal';
 
 	export default {
-		name: 'SignUp',
+		name: 'Register',
 		components: {
 			Form,
 			Modal
 		},
 		methods: {
-			signup(value) {
+			register(value) {
 				this.$store.dispatch(REGISTER, value)
-				.then(() => {
-					this.$refs.modal.showModal();
-				});
+					.then(() => {
+						this.$refs.modal.showModal();
+					});
 			}
 		}
 	};

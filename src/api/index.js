@@ -8,16 +8,12 @@ function setHeader() {
 	api.default.headers.common.Authorization = `Token ${jwtService.getToken()}`;
 };
 
-export function userSignin({ email, password }) {
-	setHeader();
-	return api.post('/auth', {
-		email,
-		password
-	});
+export function loginService(credentials) {
+	return api.post('/auth', credentials);
 };
 
-export function userSignup({ email, password }) {
-	return api.post('/register', { email, password });
+export function registerService(credentials) {
+	return api.post('/register', credentials);
 };
 
 export function getCustomers() {
@@ -28,10 +24,10 @@ export function getCustomerById(id) {
 	return api.get(`/customers/${id}`);
 };
 
-// export function createCustomer(payload) {
-// 	setHeader();
-// 	api.post()
-// };
+export function createCustomer(payload) {
+	setHeader();
+	api.post();
+};
 
 // export function updateCustomer(id) {
 // 	setHeader();
