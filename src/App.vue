@@ -46,9 +46,13 @@
   .btn {
     background: var(--primary-color);
     border: none;
-    padding: .7em;
+    padding: .7em 1.5em;
     color: white;
     border-radius: 4px;
     cursor: pointer;
+  }
+
+  .btn:hover {
+    opacity: 0.7;
   }
 </style>

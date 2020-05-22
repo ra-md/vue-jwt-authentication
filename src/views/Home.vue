@@ -1,23 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Table/>
   </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue';
+  import Table from '@/components/Table';
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-};
+  export default {
+    name: 'Home',
+    components: {
+      Table
+    }
+  };
 </script>
 
 <style scoped>
-	.home {
-		padding-top: 4em;
-	}
+  .home {
+    padding: 4em 0;
+    white-space: nowrap;
+    display: grid;
+    grid-auto-flow: column;
+    overflow-x: auto;
+  }
+
+  .home:before,
+  .home:after {
+    content: '';
+    width: 10px;
+  }
+
 </style>

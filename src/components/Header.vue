@@ -11,10 +11,10 @@
 				</div>
 				<div v-else>
 					<button class="btn">
-				    <router-link to="/login">Sign In</router-link>
+				    <router-link to="/login">Login</router-link>
 					</button>
 					<button class="btn">
-				    <router-link to="/register">Sign Up</router-link>
+				    <router-link to="/register">Register</router-link>
 					</button>
 				</div>
 			</nav>
