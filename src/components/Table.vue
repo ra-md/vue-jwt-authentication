@@ -8,63 +8,51 @@
 				<th>Actions</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td>Neymar</td>
-				<td>Neymar@neymar.com</td>
-				<td>200</td>
-				<td>
-					<button class="btn">Edit</button>
-					<button class="btn">Delete</button>
-				</td>
-			</tr>
-			<tr>
-				<td>Neymar</td>
-				<td>Neymar@neymar.com</td>
-				<td>200</td>
-				<td>
-					<button class="btn">Edit</button>
-					<button class="btn">Delete</button>
-				</td>
-			</tr>
-			<tr>
-				<td>Neymar</td>
-				<td>Neymar@neymar.com</td>
-				<td>200</td>
-				<td>
-					<button class="btn">Edit</button>
-					<button class="btn">Delete</button>
-				</td>
-			</tr>
+		<tbody v-for="(customer, index) in customers" :key="index">
+			<TableData :customerData="customer"/>
 		</tbody>
-
 	</table>
 </template>
 
 <script>
+	import TableData from './TableData';
+
 	export default {
 		name: 'Table',
+		components: {
+			TableData
+		},
 		data() {
 			return {
-
+				customers: [
+					{
+						name: 'Neymar',
+						email: 'neymar@email.com',
+						balance: 10
+					},
+					{
+						name: 'Mithrandir',
+						email: 'mithrandir@email.com',
+						balance: 100
+					},
+					{
+						name: 'Tywin',
+						email: 'tywin@email.com',
+						balance: 46
+					}
+				]
 			};
 		}
 	};
 </script>
 
 <style scoped>
-
 	.card {
     background: white;
     color: var(--font-color);
     box-shadow: 0 3px 7px 1px rgba(0,0,0,0.3);
     border-radius: 4px;
   }
-
-	button {
-		padding: .3em 1.5em;
-		margin-left: 1em;
-	}
 
   table {
 		border-spacing: 0;
@@ -74,12 +62,11 @@
 		text-align: center;
 	}
 
-	th, tr:not(:last-child) td {
+	th {
 		border-bottom: thin solid black;
 	}
 
-	th, td {
+	th {
 		padding: 1em;
 	}
-
 </style>
