@@ -1,10 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-
 import store from '@/store';
 
-const isAuthenticated = store.state.auth.isAuthenticated;
+const isAuthenticated = store.state.authModule.isAuthenticated;
 
 Vue.use(VueRouter);
 

@@ -17,7 +17,7 @@
 		},
 		methods: {
 			login(value) {	
-				this.$store.dispatch(LOGIN, value)
+				this.$store.dispatch(`authModule/${LOGIN}`, value)
 					.then(() => {
 						this.$router.push('/');
 					});

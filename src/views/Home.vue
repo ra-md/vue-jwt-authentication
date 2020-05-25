@@ -1,16 +1,31 @@
 <template>
   <div class="home">
-    <Table/>
+    <Table :customers="customers"/>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex';
   import Table from '@/components/Table';
+  import { FETCH_CUSTOMERS } from '@/store/actions.type';
 
   export default {
     name: 'Home',
     components: {
       Table
+    },
+    beforeMount() {
+      this.fetchData();
+    },
+    computed: {
+      ...mapState({
+        customers: state => state.customerModule.customers
+      })
+    },
+    methods: {
+      fetchData() {
+        this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
+      }
     }
   };
 </script>

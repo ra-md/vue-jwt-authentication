@@ -27,7 +27,7 @@
 		},
 		methods: {
 			register(value) {
-				this.$store.dispatch(REGISTER, value)
+				this.$store.dispatch(`authModule/${REGISTER}`, value)
 					.then(() => {
 						this.$refs.modal.showModal();
 					});

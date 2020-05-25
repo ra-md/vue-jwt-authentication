@@ -4,8 +4,8 @@
 		<td>{{ customerData.email }}</td>
 		<td>{{ customerData.balance }}</td>
 		<td v-if="isAuthenticated">
-			<button class="btn">Edit</button>
-			<button class="btn">Delete</button>
+			<button class="btn btn-action">Edit</button>
+			<button class="btn btn-action">Delete</button>
 		</td>
 	</tr>
 </template>
@@ -23,24 +23,8 @@
 		},
 		computed: {
 			...mapState({
-				isAuthenticated: state => state.auth.isAuthenticated
+				isAuthenticated: state => state.authModule.isAuthenticated
 			})
 		}
 	};
 </script>
-
-<style scoped>
-	button {
-		padding: .3em 1.5em;
-		margin-left: 1em;
-	}
-
-	td {
-		border-bottom: thin solid black;
-	}
-
-	td {
-		padding: 1em;
-	}
-
-</style>

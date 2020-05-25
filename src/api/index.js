@@ -20,10 +20,6 @@ export function getCustomers() {
 	return api.get('/customers');
 };
 
-export function getCustomerById(id) {
-	return api.get(`/customers/${id}`);
-};
-
 export function createCustomer(payload) {
 	setHeader();
 	api.post();

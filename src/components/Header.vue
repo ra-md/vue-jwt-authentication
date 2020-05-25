@@ -29,7 +29,7 @@
 		name: 'Header',
 		computed: {
 			isAuthenticated() {
-				return this.$store.state.auth.isAuthenticated;
+				return this.$store.state.authModule.isAuthenticated;
 			}
 		},
 		methods: {
