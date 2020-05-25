@@ -10,12 +10,12 @@
 					<button @click="logout" class="btn logout-btn">Log Out</button>
 				</div>
 				<div v-else>
-					<button class="btn">
-				    <router-link to="/login">Login</router-link>
-					</button>
-					<button class="btn">
-				    <router-link to="/register">Register</router-link>
-					</button>
+			    <router-link to="/login">
+			    	<button class="btn">Login</button>
+			    </router-link>
+			    <router-link to="/register">
+			    	<button class="btn">Register</button>
+			    </router-link>
 				</div>
 			</nav>
 		</div>

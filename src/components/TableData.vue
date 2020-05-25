@@ -3,7 +3,7 @@
 		<td>{{ customerData.name }}</td>
 		<td>{{ customerData.email }}</td>
 		<td>{{ customerData.balance }}</td>
-		<td>
+		<td v-if="isAuthenticated">
 			<button class="btn">Edit</button>
 			<button class="btn">Delete</button>
 		</td>
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex';
+
 	export default {
 		name: 'TableData',
 		props: {
@@ -18,6 +20,11 @@
 				required: true,
 				type: Object
 			}
+		},
+		computed: {
+			...mapState({
+				isAuthenticated: state => state.auth.isAuthenticated
+			})
 		}
 	};
 </script>

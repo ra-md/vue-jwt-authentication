@@ -44,7 +44,11 @@ const actions = {
 					 resolve();
 				})
 				.catch(error => {
-					commit(SET_ERROR, error.response.data.message);
+					if (error.response) {
+						commit(SET_ERROR, error.response.data.message);
+					} else {
+						commit(SET_ERROR, error);
+					}
 				});
 		});
 	},

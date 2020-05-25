@@ -3,12 +3,12 @@
 		<div class="card">
 			<slot></slot>
 			<form @submit.prevent="submit">
-				<input v-model="email" type="email" placeholder="Email">
+				<input v-model="email" v-on:keyup.enter="$event.target.nextElementSibling.focus()" type="email" placeholder="Email">
 				<input v-model="password" type="password" placeholder="Password">
         <div v-show="errors">
           <p class="errors-message">{{ errors }}</p>
         </div>
-				<input class="btn" type="submit">
+				<input class="btn" type="submit" value="submit">
 			</form>
 		</div>
 	</div>
@@ -36,7 +36,11 @@
     },
 		methods: {
 			submit() {
-				this.$emit('submit', { email: this.email, password: this.password });
+        if (this.email.length !== 0 && this.password.length !== 0) {
+  				this.$emit('submit', { email: this.email, password: this.password });
+        } else {
+          this.$store.commit(SET_ERROR, "Email or Password can't be blank");
+        }
 			},
       removeErrorMessage() {
         this.$store.commit(SET_ERROR, null);
@@ -49,7 +53,7 @@
 	.card {
     padding: 2em;
     background: white;
-    color: var(--font-color);
+    color: black;
     box-shadow: 0 3px 7px 1px rgba(0,0,0,0.3);
     border-radius: 4px;
   }
@@ -85,10 +89,6 @@
 
   .btn {
     margin-top: .7em;
-  }
-
-  .btn:focus {
-    background-color: black;
   }
 
   .errors-message {

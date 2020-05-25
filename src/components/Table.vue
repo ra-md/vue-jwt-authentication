@@ -1,11 +1,11 @@
 <template>
-	<table class="card">
+	<table>
 		<thead>
 			<tr>
 				<th>Name</th>
 				<th>Email</th>
 				<th>Balance</th>
-				<th>Actions</th>
+				<th v-if="isAuthenticated">Actions</th>
 			</tr>
 		</thead>
 		<tbody v-for="(customer, index) in customers" :key="index">
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+	import { mapState } from 'vuex';
 	import TableData from './TableData';
 
 	export default {
@@ -42,18 +43,16 @@
 					}
 				]
 			};
+		},
+		computed: {
+			...mapState({
+				isAuthenticated: state => state.auth.isAuthenticated
+			})
 		}
 	};
 </script>
 
 <style scoped>
-	.card {
-    background: white;
-    color: var(--font-color);
-    box-shadow: 0 3px 7px 1px rgba(0,0,0,0.3);
-    border-radius: 4px;
-  }
-
   table {
 		border-spacing: 0;
   }

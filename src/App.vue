@@ -28,14 +28,13 @@
   :root {
     --primary-color: blue;
     --danger-color: red;
-    --font-color: black;
   }
 
   body {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: var(--font-color);
+    color: black;
   }
 
   .container {
@@ -54,5 +53,9 @@
 
   .btn:hover {
     opacity: 0.7;
+  }
+
+  .btn:focus {
+    background-color: black;
   }
 </style>
