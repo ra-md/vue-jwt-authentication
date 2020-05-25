@@ -6,7 +6,6 @@
 			</div>
 			<nav>
 				<div v-if="isAuthenticated">
-					<button class="btn">Create Customer</button>
 					<button @click="logout" class="btn logout-btn">Log Out</button>
 				</div>
 				<div v-else>
@@ -34,7 +33,7 @@
 		},
 		methods: {
 			logout() {
-				this.$store.dispatch(LOGOUT);
+				this.$store.dispatch(`authModule/${LOGOUT}`);
 			}
 		}
 	};

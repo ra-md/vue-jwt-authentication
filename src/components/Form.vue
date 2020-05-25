@@ -39,11 +39,11 @@
         if (this.email.length !== 0 && this.password.length !== 0) {
   				this.$emit('submit', { email: this.email, password: this.password });
         } else {
-          this.$store.commit(SET_ERROR, "Email or Password can't be blank");
+          this.$store.commit(`authModule/${SET_ERROR}`, "Email or Password can't be blank");
         }
 			},
       removeErrorMessage() {
-        this.$store.commit(SET_ERROR, null);
+        this.$store.commit(`authModule/${SET_ERROR}`, null);
       }
 		}
 	};
