@@ -11,21 +11,17 @@
 		<tbody v-for="(customer, index) in customers" :key="index">
 			<TableData :customerData="customer"/>
 		</tbody>
-		<TableForm @showForm="showForm" :form="form"/>
-		<button v-if="!form && isAuthenticated" @click="showForm" class="btn btn-add">add new customer</button>
 	</table>
 </template>
 
 <script>
 	import { mapState } from 'vuex';
 	import TableData from './TableData';
-	import TableForm from './TableForm';
 
 	export default {
 		name: 'Table',
 		components: {
-			TableData,
-			TableForm
+			TableData
 		},
 		props: {
 			customers: {
@@ -33,20 +29,10 @@
 				required: true
 			}
 		},
-		data() {
-			return {
-				form: false
-			};
-		},
 		computed: {
 			...mapState({
 				isAuthenticated: state => state.authModule.isAuthenticated
 			})
-		},
-		methods: {
-			showForm(val) {
-				this.form = !this.form;
-			}
 		}
 	};
 </script>
@@ -71,11 +57,6 @@
 	td {
 		border-bottom: thin solid black;
 		padding: 1em 0;
-	}
-
-	.btn-action {
-		padding: .3em 1.5em;
-		margin-left: 1em;
 	}
 
 	.btn-add {

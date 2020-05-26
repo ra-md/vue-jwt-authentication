@@ -6,6 +6,7 @@
 			</div>
 			<nav>
 				<div v-if="isAuthenticated">
+					<button @click="showForm" class="btn">Add new customer</button>
 					<button @click="logout" class="btn logout-btn">Log Out</button>
 				</div>
 				<div v-else>
@@ -18,20 +19,36 @@
 				</div>
 			</nav>
 		</div>
+		<TableForm ref="tableFormRef" @submit="submitCustomer"/>
   </header>
 </template>
 
 <script>
-	import { LOGOUT } from '@/store/actions.type';
+	import { LOGOUT, FETCH_CUSTOMERS, ADD_CUSTOMER } from '@/store/actions.type';
+	import TableForm from './TableForm';
 
 	export default {
 		name: 'Header',
+		components: {
+			TableForm
+		},
 		computed: {
 			isAuthenticated() {
 				return this.$store.state.authModule.isAuthenticated;
 			}
 		},
 		methods: {
+			showForm() {
+				this.$refs.tableFormRef.showForm();		
+			},
+			submitCustomer(customerData) {
+				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customerData)
+					.then(() => {
+						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
+						this.$refs.tableFormRef.resetInput();
+						this.showForm();
+					});
+			},
 			logout() {
 				this.$store.dispatch(`authModule/${LOGOUT}`);
 			}
@@ -67,16 +84,22 @@
 		color: var(--primary-color);
 	}
 
-	.btn {
+	button {
 		margin-left: 1em;
 	}
 
-	.btn a {
+	button a {
 		color: white;
 	}
 
 	.logout-btn {
 		background-color: var(--danger-color);
+	}
+
+	@media (max-width: 768px) {
+		button {
+			margin-left: .5em;
+		}
 	}
 
 </style>

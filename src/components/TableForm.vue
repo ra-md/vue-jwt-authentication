@@ -1,55 +1,76 @@
 <template>
-	<tr v-show="form">
-    <td><input v-model="name" class="item" type="text"></td>
-    <td><input v-model="email" class="item" type="text"></td>
-    <td><input v-model="balance" class="item" type="number"></td>
-    <td>
-      <button @click="showForm" class="btn btn-action item">Cancel</button>
-      <button @click="submitCustomer" class="btn btn-action item">Submit</button>
-    </td>
-	</tr>
+	<Modal ref="modal">
+		<template v-slot:content>
+			<input placeholder="name" v-model="name" type="text">
+			<input placeholder="email" v-model="email" type="text">
+			<input placeholder="balance" v-model="balance" type="number">
+		</template>
+		<template v-slot:button>
+			<div class="btn-group">
+				<button @click="showForm" class="btn">Cancel</button>
+				<button @click="submit" class="btn">Submit</button>
+			</div>
+		</template>
+	</Modal>
 </template>
 
 <script>
-	import { ADD_CUSTOMER, FETCH_CUSTOMERS } from '@/store/actions.type';
+	import Modal from './Modal';
 
 	export default {
 		name: 'TableForm',
+		components: {
+			Modal
+		},
 		props: {
-			form: {
-				required: true,
-				type: Boolean
+			customerData: {
+				type: Object,
+				default: () => {
+					return {
+						name: '',
+						email: '',
+						balance: 0
+					};
+				}
 			}
 		},
 		data() {
 			return {
-				name: '',
-				email: '',
-				balance: 0
+				name: this.customerData.name,
+				email: this.customerData.email,
+				balance: this.customerData.balance
 			};
 		},
 		methods: {
 			showForm() {
-				this.$emit('showForm');
+				this.$refs.modal.showModal();
 			},
-			submitCustomer() {
-				const data = {
+			resetInput() {
+				this.name = '';
+				this.email = '';
+				this.balance = 0;
+			},
+			submit() {
+				const customer = {
 					name: this.name,
 					email: this.email,
 					balance: this.balance
 				};
 
 				if (this.name.length !== 0 && this.email.length !== 0) {
-					this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, data)
-						.then(() => {
-							this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
-							this.name = '';
-							this.email = '';
-							this.balance = 0;
-							this.$emit('showForm');
-						});
+					this.$emit('submit', customer);				
 				}
 			}
 		}
 	};
 </script>
+
+<style scoped>
+	input {
+		
+	}
+
+	input, button {
+		margin: .5em;
+	}
+</style>

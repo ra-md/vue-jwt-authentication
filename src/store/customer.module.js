@@ -21,7 +21,7 @@ const actions = {
 		return addCustomer(data);
 	},
 	[UPDATE_CUSTOMER]({ commit }, data) {
-		return updateCustomer(data.id, data.customerUpdated);
+		return updateCustomer(data.id, data.newCustomerData);
 	},
 	[DELETE_CUSTOMER]({ commit }, id) {
 		return deleteCustomer(id);
