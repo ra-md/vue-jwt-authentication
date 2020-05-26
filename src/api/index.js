@@ -4,8 +4,8 @@ import jwtService from '@/util/jwtService';
 const API_URL = 'http://localhost:3000';
 const api = axios.create({ baseURL: API_URL });
 
-function setHeader() {
-	api.default.headers.common.Authorization = `Token ${jwtService.getToken()}`;
+const headers = {
+	Authorization: `Bearer ${jwtService.getToken()}`
 };
 
 export function loginService(credentials) {
@@ -20,17 +20,20 @@ export function getCustomers() {
 	return api.get('/customers');
 };
 
-export function createCustomer(payload) {
-	setHeader();
-	api.post();
+export function addCustomer(payload) {
+	return api.post('/customers', payload, {
+		headers
+	});
 };
 
-// export function updateCustomer(id) {
-// 	setHeader();
-// 	api.put()
-// };
+export function updateCustomer(id, payload) {
+	return api.put(`/customers/${id}`, payload, {
+		headers
+	});
+};
 
-// export function deleteCustomer(id) {
-// 	setHeader();
-// 	api.delete();
-// };
+export function deleteCustomer(id) {
+	return api.delete(`/customers/${id}`, {
+		headers
+	});
+};

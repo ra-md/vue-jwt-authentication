@@ -11,6 +11,8 @@
 </template>
 
 <script>
+	import { ADD_CUSTOMER, FETCH_CUSTOMERS } from '@/store/actions.type';
+
 	export default {
 		name: 'TableForm',
 		props: {
@@ -31,12 +33,21 @@
 				this.$emit('showForm');
 			},
 			submitCustomer() {
+				const data = {
+					name: this.name,
+					email: this.email,
+					balance: this.balance
+				};
+
 				if (this.name.length !== 0 && this.email.length !== 0) {
-					console.log(this.name, this.email, this.balance);
-					this.name = '';
-					this.email = '';
-					this.balance = 0;
-					this.$emit('showForm');
+					this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, data)
+						.then(() => {
+							this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
+							this.name = '';
+							this.email = '';
+							this.balance = 0;
+							this.$emit('showForm');
+						});
 				}
 			}
 		}

@@ -10,9 +10,9 @@
 		</thead>
 		<tbody v-for="(customer, index) in customers" :key="index">
 			<TableData :customerData="customer"/>
-			<TableForm @showForm="showForm" :form="form"/>
 		</tbody>
-		<button v-if="!form" @click="showForm" class="btn btn-add">add new customer</button>
+		<TableForm @showForm="showForm" :form="form"/>
+		<button v-if="!form && isAuthenticated" @click="showForm" class="btn btn-add">add new customer</button>
 	</table>
 </template>
 
