@@ -31,7 +31,7 @@
         errors: state => state.authModule.errors
       })
     },
-    mounted() {
+    beforeDestroy() {
       this.removeErrorMessage();
     },
 		methods: {
@@ -39,7 +39,7 @@
         if (this.email.length !== 0 && this.password.length !== 0) {
   				this.$emit('submit', { email: this.email, password: this.password });
         } else {
-          this.$store.commit(`authModule/${SET_ERROR}`, "Incorrect email or password");
+          this.$store.commit(`authModule/${SET_ERROR}`, 'Incorrect email or password');
         }
 			},
       removeErrorMessage() {

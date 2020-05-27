@@ -1,8 +1,23 @@
 import axios from 'axios';
+import router from '@/router';
+import store from '@/store';
+import { SET_ERROR } from '@/store/mutations.type';
+import { LOGOUT } from '@/store/actions.type';
 import jwtService from '@/util/jwtService';
 
 const API_URL = 'http://localhost:3000';
 const api = axios.create({ baseURL: API_URL });
+
+api.interceptors.response.use(response => {
+	return Promise.resolve(response);
+}, error => {
+	if (error.response.status === 401) {
+		store.dispatch(`authModule/${LOGOUT}`);
+		store.commit(`authModule/${SET_ERROR}`, 'token expired');
+		router.push('/login');
+	}
+	return Promise.reject(error);
+});
 
 function setAuthorization() {
 	api.defaults.headers.common.Authorization = `Bearer ${jwtService.getToken()}`;
