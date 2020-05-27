@@ -7,19 +7,19 @@
 			<button @click="showForm" class="btn btn-action">Edit</button>
 			<button @click="deleteCustomer" class="btn btn-action">Delete</button>
 		</td>
-		<TableForm ref="tableFormRef" @submit="submitCustomer" :customerData="customerData"/>
+		<Input ref="inputRef" @submit="updateCustomer" :customerData="customerData"/>
 	</tr>
 </template>
 
 <script>
 	import { UPDATE_CUSTOMER, DELETE_CUSTOMER, FETCH_CUSTOMERS } from '@/store/actions.type';
 	import { mapState } from 'vuex';
-	import TableForm from './TableForm';
+	import Input from './Input';
 
 	export default {
 		name: 'TableData',
 		components: {
-			TableForm
+			Input
 		},
 		props: {
 			customerData: {
@@ -34,14 +34,12 @@
 		},
 		methods: {
 			showForm() {
-				this.$refs.tableFormRef.showForm();
+				this.$refs.inputRef.showInput();
 			},
-			submitCustomer(newCustomerData) {
+			updateCustomer(newCustomerData) {
 				this.$store.dispatch(`customerModule/${UPDATE_CUSTOMER}`, { id: this.customerData._id, newCustomerData })
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
-						this.$refs.tableFormRef.resetInput();
-						this.showForm();
 					});
 			},
 			deleteCustomer() {

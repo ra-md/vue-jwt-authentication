@@ -7,7 +7,7 @@
 		</template>
 		<template v-slot:button>
 			<div class="btn-group">
-				<button @click="showForm" class="btn">Cancel</button>
+				<button @click="showInput" class="btn">Cancel</button>
 				<button @click="submit" class="btn">Submit</button>
 			</div>
 		</template>
@@ -18,7 +18,7 @@
 	import Modal from './Modal';
 
 	export default {
-		name: 'TableForm',
+		name: 'Input',
 		components: {
 			Modal
 		},
@@ -42,13 +42,8 @@
 			};
 		},
 		methods: {
-			showForm() {
+			showInput() {
 				this.$refs.modal.showModal();
-			},
-			resetInput() {
-				this.name = '';
-				this.email = '';
-				this.balance = 0;
 			},
 			submit() {
 				const customer = {
@@ -58,7 +53,11 @@
 				};
 
 				if (this.name.length !== 0 && this.email.length !== 0) {
-					this.$emit('submit', customer);				
+					this.$emit('submit', customer);
+					this.showInput();
+					this.name = '';
+					this.email = '';
+					this.balance = 0;
 				}
 			}
 		}
@@ -66,10 +65,6 @@
 </script>
 
 <style scoped>
-	input {
-		
-	}
-
 	input, button {
 		margin: .5em;
 	}

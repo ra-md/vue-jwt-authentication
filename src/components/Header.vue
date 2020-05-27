@@ -19,18 +19,18 @@
 				</div>
 			</nav>
 		</div>
-		<TableForm ref="tableFormRef" @submit="submitCustomer"/>
+		<Input ref="inputRef" @submit="submitCustomer"/>
   </header>
 </template>
 
 <script>
 	import { LOGOUT, FETCH_CUSTOMERS, ADD_CUSTOMER } from '@/store/actions.type';
-	import TableForm from './TableForm';
+	import Input from './Input';
 
 	export default {
 		name: 'Header',
 		components: {
-			TableForm
+			Input
 		},
 		computed: {
 			isAuthenticated() {
@@ -39,14 +39,12 @@
 		},
 		methods: {
 			showForm() {
-				this.$refs.tableFormRef.showForm();		
+				this.$refs.inputRef.showInput();		
 			},
 			submitCustomer(customerData) {
 				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customerData)
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
-						this.$refs.tableFormRef.resetInput();
-						this.showForm();
 					});
 			},
 			logout() {

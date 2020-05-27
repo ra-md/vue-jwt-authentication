@@ -24,16 +24,11 @@ const mutations = {
 
 const actions = {
 	[REGISTER]({ commit }, credentials) {
-		return new Promise(resolve => {
-			commit(SET_ERROR, null);
-			registerService(credentials)
-				.then(() => {
-					resolve();
-				})
-				.catch(error => {
-					commit(SET_ERROR, error.response.data.message);
-				});
-		});
+		commit(SET_ERROR, null);
+		return registerService(credentials)
+			.catch(error => {
+				commit(SET_ERROR, error.response.data.message);
+			});
 	},
 	[LOGIN]({ commit }, credentials) {
 		return new Promise(resolve => {

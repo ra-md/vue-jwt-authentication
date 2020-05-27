@@ -5,9 +5,9 @@
 </template>
 
 <script>
+  import { FETCH_CUSTOMERS } from '@/store/actions.type';
   import { mapState } from 'vuex';
   import Table from '@/components/Table';
-  import { FETCH_CUSTOMERS } from '@/store/actions.type';
 
   export default {
     name: 'Home',

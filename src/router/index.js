@@ -3,7 +3,9 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import store from '@/store';
 
-const isAuthenticated = store.state.authModule.isAuthenticated;
+function isAuthenticated() {
+  return store.state.authModule.isAuthenticated;
+}
 
 Vue.use(VueRouter);
 
@@ -32,8 +34,11 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name === 'login' && isAuthenticated || to.name === 'register' && isAuthenticated) next({ name: 'home' });
-  else next();
+  if (to.name === 'login' && isAuthenticated() || to.name === 'register' && isAuthenticated()) {
+    next({ name: 'home' });
+  } else {
+    next();
+  }
 });
 
 export default router;
