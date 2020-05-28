@@ -58,4 +58,17 @@
   .btn:focus {
     background-color: black;
   }
+
+  .text-input {
+    margin: .7em 0;
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 0.7em;
+    border: 2px solid #cecece;
+  }
+
+  input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+  }
 </style>

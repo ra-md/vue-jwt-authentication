@@ -39,8 +39,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 1em;
-    background-color: white;
     border-radius: 5px;
+    width: 20em;
+    background-color: white;
     text-align: center;
     display: flex;
     flex-direction: column;

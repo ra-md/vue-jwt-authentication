@@ -4,7 +4,8 @@
 			<slot></slot>
 			<form class="flex-column" @submit.prevent="submit">
         <ValidationProvider class="flex-column" rules="required|email" v-slot="{ errors }">
-  				<input 
+  				<input
+            class="text-input"
             :class="{'errors': errors[0]}" 
             v-model="email" 
             v-on:keyup.enter="$event.target.nextElementSibling.focus()" 
@@ -12,7 +13,8 @@
           <span class="errors-message">{{ errors[0] }}</span>
         </ValidationProvider>
         <ValidationProvider class="flex-column" rules="min:3|required" v-slot="{ errors }">
-  				<input 
+  				<input
+            class="text-input"
             :class="{'errors': errors[0]}" 
             v-model="password" 
             type="password" 
@@ -107,20 +109,6 @@
   .flex-column {
     display: flex;
     flex-direction: column;
-  }
-
-  input[type=password],
-  input[type=text] {
-    margin: .7em 0;
-    background: #f5f5f5;
-    border-radius: 4px;
-    padding: 0.7em;
-    border: 2px solid #cecece;
-  }
-
-  input:focus {
-    border-color: var(--primary-color);
-    outline: none;
   }
 
   .btn {
