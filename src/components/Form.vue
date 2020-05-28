@@ -2,9 +2,23 @@
 	<div class="auth">
 		<div class="card">
 			<slot></slot>
-			<form @submit.prevent="submit">
-				<input v-model="email" v-on:keyup.enter="$event.target.nextElementSibling.focus()" type="email" placeholder="Email">
-				<input v-model="password" type="password" placeholder="Password">
+			<form class="flex-column" @submit.prevent="submit">
+        <ValidationProvider class="flex-column" rules="required|email" v-slot="{ errors }">
+  				<input 
+            :class="{'errors': errors[0]}" 
+            v-model="email" 
+            v-on:keyup.enter="$event.target.nextElementSibling.focus()" 
+            type="text" placeholder="Email">
+          <span class="errors-message">{{ errors[0] }}</span>
+        </ValidationProvider>
+        <ValidationProvider class="flex-column" rules="min:3|required" v-slot="{ errors }">
+  				<input 
+            :class="{'errors': errors[0]}" 
+            v-model="password" 
+            type="password" 
+            placeholder="Password">
+          <span class="errors-message">{{ errors[0] }}</span>
+        </ValidationProvider>
         <div v-show="errors">
           <p class="errors-message">{{ errors }}</p>
         </div>
@@ -17,9 +31,31 @@
 <script>
   import { mapState } from 'vuex';
   import { SET_ERROR } from '@/store/mutations.type';
+  import { ValidationProvider, extend } from 'vee-validate';
+  import { required, email, min } from 'vee-validate/dist/rules';
+
+  extend('required', {
+    ...required,
+    message: 'this field is required'
+  });
+
+  extend('email', {
+    ...email,
+    message: 'email is invalid'
+  });
+
+  extend('min', {
+    ...min,
+    message: (fieldName, placeholder) => {
+      return `min ${placeholder.length} characters`;
+    }
+  });
 
 	export default {
 		name: 'Form',
+    components: {
+      ValidationProvider
+    },
 		data() {
 			return {
 				email: '',
@@ -68,13 +104,13 @@
     text-align: center;
   }
 
-  form {
+  .flex-column {
     display: flex;
     flex-direction: column;
   }
 
   input[type=password],
-  input[type=email] {
+  input[type=text] {
     margin: .7em 0;
     background: #f5f5f5;
     border-radius: 4px;
@@ -89,6 +125,10 @@
 
   .btn {
     margin-top: .7em;
+  }
+
+  .errors {
+    border-color: red!important;
   }
 
   .errors-message {

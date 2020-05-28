@@ -1,8 +1,11 @@
 <template>
 	<Modal ref="modal">
 		<template v-slot:content>
+			<label>Name: </label>
 			<input placeholder="name" v-model="name" type="text">
+			<label>Email: </label>
 			<input placeholder="email" v-model="email" type="text">
+			<label>Balance: </label>
 			<input placeholder="balance" v-model="balance" type="number">
 		</template>
 		<template v-slot:button>
