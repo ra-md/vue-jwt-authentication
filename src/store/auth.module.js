@@ -1,4 +1,4 @@
-import { REGISTER, LOGIN, LOGOUT } from './actions.type';
+import { REGISTER, LOGIN } from './actions.type';
 import { SET_ERROR, SET_AUTH, PURGE_AUTH } from './mutations.type';
 import { registerService, loginService } from '@/api';
 import jwtService from '@/util/jwtService';
@@ -51,9 +51,6 @@ const actions = {
 					}
 				});
 		});
-	},
-	[LOGOUT]({ commit }) {
-		commit(PURGE_AUTH);
 	}
 };
 

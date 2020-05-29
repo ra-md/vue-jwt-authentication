@@ -1,8 +1,7 @@
 import axios from 'axios';
 import router from '@/router';
 import store from '@/store';
-import { SET_ERROR } from '@/store/mutations.type';
-import { LOGOUT } from '@/store/actions.type';
+import { PURGE_AUTH, SET_ERROR } from '@/store/mutations.type';
 import jwtService from '@/util/jwtService';
 
 const API_URL = 'http://localhost:3000';
@@ -12,7 +11,7 @@ api.interceptors.response.use(response => {
 	return Promise.resolve(response);
 }, error => {
 	if (error.response.status === 401) {
-		store.dispatch(`authModule/${LOGOUT}`);
+		store.commit(`authModule/${PURGE_AUTH}`);
 		store.commit(`authModule/${SET_ERROR}`, 'token expired');
 		router.push('/login');
 	}

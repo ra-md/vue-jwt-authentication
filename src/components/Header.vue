@@ -24,7 +24,8 @@
 </template>
 
 <script>
-	import { LOGOUT, FETCH_CUSTOMERS, ADD_CUSTOMER } from '@/store/actions.type';
+	import { FETCH_CUSTOMERS, ADD_CUSTOMER } from '@/store/actions.type';
+	import { PURGE_AUTH } from '@/store/mutations.type';
 	import ModalInput from './ModalInput';
 
 	export default {
@@ -48,7 +49,7 @@
 					});
 			},
 			logout() {
-				this.$store.dispatch(`authModule/${LOGOUT}`);
+				this.$store.commit(`authModule/${PURGE_AUTH}`);
 			}
 		}
 	};
