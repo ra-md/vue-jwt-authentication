@@ -29,7 +29,7 @@
 			register(value) {
 				this.$store.dispatch(`authModule/${REGISTER}`, value)
 					.then(() => {
-						this.$refs.modalRef.showModal();
+						this.$refs.modalRef.toggleModal();
 					});
 			}
 		}

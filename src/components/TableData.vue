@@ -4,22 +4,22 @@
 		<td>{{ customerData.email }}</td>
 		<td>{{ customerData.balance }}</td>
 		<td v-if="isAuthenticated">
-			<button @click="showForm" class="btn btn-action">Edit</button>
+			<button @click="toggleModalInput" class="btn btn-action">Edit</button>
 			<button @click="deleteCustomer" class="btn btn-action">Delete</button>
 		</td>
-		<Input ref="inputRef" @submit="updateCustomer" :customerData="customerData"/>
+		<ModalInput ref="modalInputRef" @submit="updateCustomer" :customerData="customerData"/>
 	</tr>
 </template>
 
 <script>
 	import { UPDATE_CUSTOMER, DELETE_CUSTOMER, FETCH_CUSTOMERS } from '@/store/actions.type';
 	import { mapState } from 'vuex';
-	import Input from './Input';
+	import ModalInput from './ModalInput';
 
 	export default {
 		name: 'TableData',
 		components: {
-			Input
+			ModalInput
 		},
 		props: {
 			customerData: {
@@ -33,8 +33,8 @@
 			})
 		},
 		methods: {
-			showForm() {
-				this.$refs.inputRef.showInput();
+			toggleModalInput() {
+				this.$refs.modalInputRef.toggleModalInput();
 			},
 			updateCustomer(newCustomerData) {
 				this.$store.dispatch(`customerModule/${UPDATE_CUSTOMER}`, { id: this.customerData._id, newCustomerData })

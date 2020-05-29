@@ -16,7 +16,7 @@
 			};
 		},
 		methods: {
-			showModal() {
+			toggleModal() {
 				this.modal = !this.modal;
 			}
 		}

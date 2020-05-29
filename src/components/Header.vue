@@ -6,7 +6,7 @@
 			</div>
 			<nav>
 				<div v-if="isAuthenticated">
-					<button @click="showForm" class="btn">Add new customer</button>
+					<button @click="toggleModalInput" class="btn">Add new customer</button>
 					<button @click="logout" class="btn logout-btn">Log Out</button>
 				</div>
 				<div v-else>
@@ -19,18 +19,18 @@
 				</div>
 			</nav>
 		</div>
-		<Input ref="inputRef" @submit="submitCustomer"/>
+		<ModalInput ref="modalInputRef" @submit="submitCustomer"/>
   </header>
 </template>
 
 <script>
 	import { LOGOUT, FETCH_CUSTOMERS, ADD_CUSTOMER } from '@/store/actions.type';
-	import Input from './Input';
+	import ModalInput from './ModalInput';
 
 	export default {
 		name: 'Header',
 		components: {
-			Input
+			ModalInput
 		},
 		computed: {
 			isAuthenticated() {
@@ -38,8 +38,8 @@
 			}
 		},
 		methods: {
-			showForm() {
-				this.$refs.inputRef.showInput();		
+			toggleModalInput() {
+				this.$refs.modalInputRef.toggleModalInput();		
 			},
 			submitCustomer(customerData) {
 				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customerData)

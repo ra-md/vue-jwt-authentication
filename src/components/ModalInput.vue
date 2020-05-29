@@ -1,16 +1,30 @@
 <template>
 	<Modal ref="modal">
 		<template v-slot:content>
-			<label>Name</label>
-			<input class="text-input" placeholder="name" v-model="name" type="text">
+			<label>Name</label> 
+			<input 
+				v-on:keyup.enter="$event.target.nextElementSibling.nextElementSibling.focus()" 
+				class="text-input" 
+				placeholder="name" 
+				v-model="name" type="text">
 			<label>Email</label>
-			<input class="text-input" placeholder="email" v-model="email" type="text">
+			<input 
+				v-on:keyup.enter="$event.target.nextElementSibling.nextElementSibling.focus()" 
+				class="text-input" 
+				placeholder="email" 
+				v-model="email" 
+				type="text">
 			<label>Balance</label>
-			<input class="text-input" placeholder="balance" v-model="balance" type="number">
+			<input 
+				v-on:keyup.enter="submit" 
+				class="text-input" 
+				placeholder="balance" 
+				v-model="balance" 
+				type="number">
 		</template>
 		<template v-slot:button>
 			<div class="btn-group">
-				<button @click="showInput" class="btn">Cancel</button>
+				<button @click="toggleModalInput" class="btn">Cancel</button>
 				<button @click="submit" class="btn">Submit</button>
 			</div>
 		</template>
@@ -21,7 +35,7 @@
 	import Modal from './Modal';
 
 	export default {
-		name: 'Input',
+		name: 'ModalInput',
 		components: {
 			Modal
 		},
@@ -45,8 +59,8 @@
 			};
 		},
 		methods: {
-			showInput() {
-				this.$refs.modal.showModal();
+			toggleModalInput() {
+				this.$refs.modal.toggleModal();
 			},
 			submit() {
 				const customer = {
@@ -57,7 +71,7 @@
 
 				if (this.name.length !== 0 && this.email.length !== 0) {
 					this.$emit('submit', customer);
-					this.showInput();
+					this.toggleModalInput();
 					this.name = '';
 					this.email = '';
 					this.balance = 0;
