@@ -121,6 +121,7 @@
 
   .disabled-btn {
     opacity: 0.3;
+    cursor: default;
   }
 
   @media (max-width: 768px) {
