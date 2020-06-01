@@ -10,7 +10,7 @@ const api = axios.create({ baseURL: API_URL });
 api.interceptors.response.use(response => {
 	return Promise.resolve(response);
 }, error => {
-	if (error.response.status === 401) {
+	if (error.response?.status === 401) {
 		store.commit(`authModule/${PURGE_AUTH}`);
 		store.commit(`authModule/${SET_ERROR}`, 'token expired');
 		router.push('/login');
