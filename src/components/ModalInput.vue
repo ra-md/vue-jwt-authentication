@@ -62,6 +62,11 @@
 			toggleModalInput() {
 				this.$refs.modal.toggleModal();
 			},
+			resetInput() {
+				this.name = '';
+				this.email = '';
+				this.balance = 0;
+			},
 			submit() {
 				const customer = {
 					name: this.name,
@@ -72,9 +77,6 @@
 				if (this.name.length !== 0 && this.email.length !== 0) {
 					this.$emit('submit', customer);
 					this.toggleModalInput();
-					this.name = '';
-					this.email = '';
-					this.balance = 0;
 				}
 			}
 		}

@@ -36,8 +36,8 @@
 			toggleModalInput() {
 				this.$refs.modalInputRef.toggleModalInput();
 			},
-			updateCustomer(newCustomerData) {
-				this.$store.dispatch(`customerModule/${UPDATE_CUSTOMER}`, { id: this.customerData._id, newCustomerData })
+			updateCustomer(updCustomer) {
+				this.$store.dispatch(`customerModule/${UPDATE_CUSTOMER}`, { id: this.customerData._id, updCustomer })
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
 					});

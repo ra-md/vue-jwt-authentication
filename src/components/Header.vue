@@ -42,10 +42,11 @@
 			toggleModalInput() {
 				this.$refs.modalInputRef.toggleModalInput();		
 			},
-			submitCustomer(customerData) {
-				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customerData)
+			submitCustomer(customer) {
+				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customer)
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
+						this.$refs.modalInputRef.resetInput();
 					});
 			},
 			logout() {
