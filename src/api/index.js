@@ -22,29 +22,38 @@ function setAuthorization() {
 	api.defaults.headers.common.Authorization = `Bearer ${jwtService.getToken()}`;
 };
 
-export function loginService(credentials) {
+function loginService(credentials) {
 	return api.post('/auth', credentials);
 };
 
-export function registerService(credentials) {
+function registerService(credentials) {
 	return api.post('/register', credentials);
 };
 
-export function getCustomers() {
+function getCustomers() {
 	return api.get('/customers');
 };
 
-export function addCustomer(payload) {
+function addCustomer(payload) {
 	setAuthorization();
 	return api.post('/customers', payload);
 };
 
-export function updateCustomer(id, payload) {
+function updateCustomer(id, payload) {
 	setAuthorization();
 	return api.put(`/customers/${id}`, payload);
 };
 
-export function deleteCustomer(id) {
+function deleteCustomer(id) {
 	setAuthorization();
 	return api.delete(`/customers/${id}`);
+};
+
+export default { 
+	loginService, 
+	registerService, 
+	getCustomers, 
+	addCustomer, 
+	updateCustomer, 
+	deleteCustomer
 };

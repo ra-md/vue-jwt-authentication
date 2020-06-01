@@ -1,6 +1,6 @@
 import { FETCH_CUSTOMERS, ADD_CUSTOMER, UPDATE_CUSTOMER, DELETE_CUSTOMER } from './actions.type';
 import { SET_CUSTOMERS } from './mutations.type';
-import { getCustomers, addCustomer, updateCustomer, deleteCustomer } from '@/api';
+import api from '@/api';
 
 const state = {
 	customers: []
@@ -14,17 +14,17 @@ const mutations = {
 
 const actions = {
 	async [FETCH_CUSTOMERS]({ commit }) {
-		const { data } = await getCustomers();
+		const { data } = await api.getCustomers();
 		commit(SET_CUSTOMERS, data);
 	},
 	[ADD_CUSTOMER](context, data) {
-		return addCustomer(data);
+		return api.addCustomer(data);
 	},
 	[UPDATE_CUSTOMER](context, data) {
-		return updateCustomer(data.id, data.newCustomerData);
+		return api.updateCustomer(data.id, data.newCustomerData);
 	},
 	[DELETE_CUSTOMER](context, id) {
-		return deleteCustomer(id);
+		return api.deleteCustomer(id);
 	}
 };
 

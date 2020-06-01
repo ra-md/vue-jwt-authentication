@@ -1,6 +1,6 @@
 import { REGISTER, LOGIN } from './actions.type';
 import { SET_ERROR, SET_AUTH, PURGE_AUTH } from './mutations.type';
-import { registerService, loginService } from '@/api';
+import api from '@/api';
 import jwtService from '@/util/jwtService';
 
 const state = {
@@ -26,7 +26,7 @@ const actions = {
 	[REGISTER]({ commit }, credentials) {
 		return new Promise((resolve) => {
 			commit(SET_ERROR, null);
-			registerService(credentials)
+			api.registerService(credentials)
 				.then(() => {
 					resolve();
 				})
@@ -38,7 +38,7 @@ const actions = {
 	[LOGIN]({ commit }, credentials) {
 		return new Promise(resolve => {
 			commit(SET_ERROR, null);
-			loginService(credentials)
+			api.loginService(credentials)
 				.then(response => {
 					 commit(SET_AUTH, response.data.token);
 					 resolve();
