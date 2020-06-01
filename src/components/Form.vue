@@ -9,7 +9,8 @@
             :class="{'error': errors[0]}" 
             v-model="email" 
             v-on:keyup.enter="$event.target.nextElementSibling.focus()" 
-            type="text" placeholder="Email">
+            type="text" 
+            placeholder="Email">
           <span class="error-message">{{ errors[0] }}</span>
         </ValidationProvider>
         <ValidationProvider class="flex-column" rules="min:3|required" v-slot="{ errors }">
@@ -24,7 +25,7 @@
         <div v-show="errors">
           <p class="error-message">{{ errors }}</p>
         </div>
-				<input class="btn" type="submit" value="submit">
+				<input :disabled="!isValid" :class="{ 'disabled-btn': !isValid }" class="btn" type="submit" value="submit">
 			</form>
 		</div>
 	</div>
@@ -67,7 +68,10 @@
     computed: {
       ...mapState({
         errors: state => state.authModule.errors
-      })
+      }),
+      isValid() {
+        return email.validate(this.email) && min.validate(this.password, '123');
+      }
     },
     beforeDestroy() {
       this.removeErrorMessage();
@@ -113,6 +117,10 @@
 
   .btn {
     margin-top: .7em;
+  }
+
+  .disabled-btn {
+    opacity: 0.3;
   }
 
   @media (max-width: 768px) {
