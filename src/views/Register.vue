@@ -3,7 +3,7 @@
 	<Form @submit="register">
 		<h2>Register</h2>
 	</Form>
-	<Modal ref="modalRef">
+	<Modal ref="modal">
 		<template v-slot:content>
 			<p class="modal-text">akun berhasil dibuat silahkan login</p>
 		</template>
@@ -29,7 +29,7 @@
 			register(value) {
 				this.$store.dispatch(`authModule/${REGISTER}`, value)
 					.then(() => {
-						this.$refs.modalRef.toggleModal();
+						this.$refs.modal.toggleModal();
 					});
 			}
 		}

@@ -19,7 +19,7 @@
 				</div>
 			</nav>
 		</div>
-		<ModalInput ref="modalInputRef" @submit="submitCustomer"/>
+		<ModalInput ref="modalInput" @submit="submitCustomer"/>
   </header>
 </template>
 
@@ -40,13 +40,13 @@
 		},
 		methods: {
 			toggleModalInput() {
-				this.$refs.modalInputRef.toggleModalInput();		
+				this.$refs.modalInput.resetInput();
+				this.$refs.modalInput.toggleModalInput();
 			},
-			submitCustomer(customer) {
-				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customer)
+			submitCustomer(customerData) {
+				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customerData)
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
-						this.$refs.modalInputRef.resetInput();
 					});
 			},
 			logout() {

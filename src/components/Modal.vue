@@ -1,5 +1,5 @@
 <template>
-	<div v-show="modal" class="modal-overlay">
+	<div v-if="modal" class="modal-overlay">
 		<div class="modal">
 			<slot name="content"></slot>
 			<slot name="button"></slot>

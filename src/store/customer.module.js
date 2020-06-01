@@ -17,11 +17,11 @@ const actions = {
 		const { data } = await getCustomers();
 		commit(SET_CUSTOMERS, data);
 	},
-	[ADD_CUSTOMER](context, customer) {
-		return addCustomer(customer);
+	[ADD_CUSTOMER](context, data) {
+		return addCustomer(data);
 	},
-	[UPDATE_CUSTOMER](context, { id, updCustomer }) {
-		return updateCustomer(id, updCustomer);
+	[UPDATE_CUSTOMER](context, data) {
+		return updateCustomer(data.id, data.newCustomerData);
 	},
 	[DELETE_CUSTOMER](context, id) {
 		return deleteCustomer(id);

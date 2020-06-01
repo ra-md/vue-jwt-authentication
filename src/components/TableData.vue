@@ -7,7 +7,10 @@
 			<button @click="toggleModalInput" class="btn btn-action">Edit</button>
 			<button @click="deleteCustomer" class="btn btn-action">Delete</button>
 		</td>
-		<ModalInput ref="modalInputRef" @submit="updateCustomer" :customerData="customerData"/>
+		<ModalInput 
+			ref="modalInput"
+			@submit="updateCustomer" 
+			:customerData="customerData"/>
 	</tr>
 </template>
 
@@ -34,10 +37,10 @@
 		},
 		methods: {
 			toggleModalInput() {
-				this.$refs.modalInputRef.toggleModalInput();
+				this.$refs.modalInput.toggleModalInput();
 			},
-			updateCustomer(updCustomer) {
-				this.$store.dispatch(`customerModule/${UPDATE_CUSTOMER}`, { id: this.customerData._id, updCustomer })
+			updateCustomer(newCustomerData) {
+				this.$store.dispatch(`customerModule/${UPDATE_CUSTOMER}`, { id: this.customerData._id, newCustomerData })
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
 					});
