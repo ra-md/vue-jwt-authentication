@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <Table :customers="customers"/>
+    <span class="error-message" v-if="errors">{{ errors }}</span>
+    <Table v-else :customers="customers"/>
   </div>
 </template>
 
@@ -19,7 +20,8 @@
     },
     computed: {
       ...mapState({
-        customers: state => state.customerModule.customers
+        customers: state => state.customerModule.customers,
+        errors: state => state.customerModule.errors
       })
     },
     methods: {

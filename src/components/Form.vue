@@ -6,23 +6,23 @@
         <ValidationProvider class="flex-column" rules="required|email" v-slot="{ errors }">
   				<input
             class="text-input"
-            :class="{'errors': errors[0]}" 
+            :class="{'error': errors[0]}" 
             v-model="email" 
             v-on:keyup.enter="$event.target.nextElementSibling.focus()" 
             type="text" placeholder="Email">
-          <span class="errors-message">{{ errors[0] }}</span>
+          <span class="error-message">{{ errors[0] }}</span>
         </ValidationProvider>
         <ValidationProvider class="flex-column" rules="min:3|required" v-slot="{ errors }">
   				<input
             class="text-input"
-            :class="{'errors': errors[0]}" 
+            :class="{'error': errors[0]}" 
             v-model="password" 
             type="password" 
             placeholder="Password">
-          <span class="errors-message">{{ errors[0] }}</span>
+          <span class="error-message">{{ errors[0] }}</span>
         </ValidationProvider>
         <div v-show="errors">
-          <p class="errors-message">{{ errors }}</p>
+          <p class="error-message">{{ errors }}</p>
         </div>
 				<input class="btn" type="submit" value="submit">
 			</form>
@@ -113,14 +113,6 @@
 
   .btn {
     margin-top: .7em;
-  }
-
-  .errors {
-    border-color: red!important;
-  }
-
-  .errors-message {
-    color: red;
   }
 
   @media (max-width: 768px) {

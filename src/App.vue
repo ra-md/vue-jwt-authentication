@@ -71,4 +71,13 @@
     border-color: var(--primary-color);
     outline: none;
   }
+
+  .error {
+    border-color: red!important;
+  }
+
+  .error-message {
+    color: red;
+    text-align: center;
+  }
 </style>
