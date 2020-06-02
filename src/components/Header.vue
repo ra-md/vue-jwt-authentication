@@ -26,6 +26,7 @@
 <script>
 	import { FETCH_CUSTOMERS, ADD_CUSTOMER } from '@/store/actions.type';
 	import { PURGE_AUTH } from '@/store/mutations.type';
+	import { mapState } from 'vuex';
 	import ModalInput from './ModalInput';
 
 	export default {
@@ -34,9 +35,9 @@
 			ModalInput
 		},
 		computed: {
-			isAuthenticated() {
-				return this.$store.state.authModule.isAuthenticated;
-			}
+			...mapState({
+				isAuthenticated: state => state.authModule.isAuthenticated
+			})
 		},
 		methods: {
 			toggleModalInput() {
