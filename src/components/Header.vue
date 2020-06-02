@@ -6,7 +6,7 @@
 			</div>
 			<nav>
 				<div v-if="isAuthenticated">
-					<button @click="toggleModal" class="btn">Add new customer</button>
+					<button @click="toggleModal" id="btn-add" class="btn">Add new customer</button>
 					<button @click="logout" class="btn logout-btn">Log Out</button>
 				</div>
 				<div v-else>
