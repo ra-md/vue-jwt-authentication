@@ -70,7 +70,7 @@
         errors: state => state.authModule.errors
       }),
       isValid() {
-        return email.validate(this.email) && min.validate(this.password, '123');
+        return email.validate(this.email) && this.password.length >= 3
       }
     },
     beforeDestroy() {
@@ -78,11 +78,7 @@
     },
 		methods: {
 			submit() {
-        if (this.email.length !== 0 && this.password.length !== 0) {
-  				this.$emit('submit', { email: this.email, password: this.password });
-        } else {
-          this.$store.commit(`authModule/${SET_ERROR}`, 'Incorrect email or password');
-        }
+				this.$emit('submit', { email: this.email, password: this.password });
 			},
       removeErrorMessage() {
         this.$store.commit(`authModule/${SET_ERROR}`, null);
