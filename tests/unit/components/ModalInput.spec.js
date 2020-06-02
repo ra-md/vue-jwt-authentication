@@ -5,8 +5,8 @@ describe('ModalInput.vue', () => {
 	it('tutup modal kalau button cancel diklik', () => {
 		const wrapper = mount(ModalInput);
 
-		wrapper.find('#btn-cancel').trigger('click');
-
+		// wrapper.find('#btn-cancel').trigger('click');
+		wrapper.vm.toggleModal();
 		console.log(wrapper.html());
 
 		expect(wrapper.exists()).toBe(true);

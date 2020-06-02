@@ -24,8 +24,8 @@
 		</template>
 		<template v-slot:button>
 			<div class="btn-group">
-				<button @click="toggleModal" id="#btn-cancel" class="btn">Cancel</button>
-				<button @click="submit" id="#btn-add" class="btn">Submit</button>
+				<button @click="toggleModal" id="btn-cancel" class="btn">Cancel</button>
+				<button @click="submit" id="btn-add" class="btn">Submit</button>
 			</div>
 		</template>
 	</Modal>
