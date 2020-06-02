@@ -24,7 +24,7 @@
 		</template>
 		<template v-slot:button>
 			<div class="btn-group">
-				<button @click="toggleModalInput" class="btn">Cancel</button>
+				<button @click="toggleModal" class="btn">Cancel</button>
 				<button @click="submit" class="btn">Submit</button>
 			</div>
 		</template>
@@ -59,7 +59,7 @@
 			};
 		},
 		methods: {
-			toggleModalInput() {
+			toggleModal() {
 				this.$refs.modal.toggleModal();
 			},
 			resetInput() {
@@ -76,7 +76,7 @@
 
 				if (this.name.length !== 0 && this.email.length !== 0) {
 					this.$emit('submit', customer);
-					this.toggleModalInput();
+					this.toggleModal();
 				}
 			}
 		}

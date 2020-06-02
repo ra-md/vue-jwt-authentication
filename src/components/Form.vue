@@ -70,7 +70,7 @@
         errors: state => state.authModule.errors
       }),
       isValid() {
-        return email.validate(this.email) && this.password.length >= 3
+        return email.validate(this.email) && this.password.length >= 3;
       }
     },
     beforeDestroy() {

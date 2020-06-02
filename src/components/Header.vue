@@ -6,7 +6,7 @@
 			</div>
 			<nav>
 				<div v-if="isAuthenticated">
-					<button @click="toggleModalInput" class="btn">Add new customer</button>
+					<button @click="toggleModal" class="btn">Add new customer</button>
 					<button @click="logout" class="btn logout-btn">Log Out</button>
 				</div>
 				<div v-else>
@@ -19,20 +19,19 @@
 				</div>
 			</nav>
 		</div>
-		<ModalInput ref="modalInput" @submit="submitCustomer"/>
+		<AddCustomer ref="addCustomer"/>
   </header>
 </template>
 
 <script>
-	import { FETCH_CUSTOMERS, ADD_CUSTOMER } from '@/store/actions.type';
 	import { PURGE_AUTH } from '@/store/mutations.type';
 	import { mapState } from 'vuex';
-	import ModalInput from './ModalInput';
+	import AddCustomer from './AddCustomer';
 
 	export default {
 		name: 'Header',
 		components: {
-			ModalInput
+			AddCustomer
 		},
 		computed: {
 			...mapState({
@@ -40,15 +39,8 @@
 			})
 		},
 		methods: {
-			toggleModalInput() {
-				this.$refs.modalInput.resetInput();
-				this.$refs.modalInput.toggleModalInput();
-			},
-			submitCustomer(customerData) {
-				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customerData)
-					.then(() => {
-						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
-					});
+			toggleModal() {
+				this.$refs.addCustomer.toggleModal();
 			},
 			logout() {
 				this.$store.commit(`authModule/${PURGE_AUTH}`);

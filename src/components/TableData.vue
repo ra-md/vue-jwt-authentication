@@ -4,7 +4,7 @@
 		<td>{{ customerData.email }}</td>
 		<td>{{ customerData.balance }}</td>
 		<td v-if="isAuthenticated">
-			<button @click="toggleModalInput" class="btn btn-action">Edit</button>
+			<button @click="toggleModal" class="btn btn-action">Edit</button>
 			<button @click="deleteCustomer" class="btn btn-action">Delete</button>
 		</td>
 		<ModalInput 
@@ -36,8 +36,8 @@
 			})
 		},
 		methods: {
-			toggleModalInput() {
-				this.$refs.modalInput.toggleModalInput();
+			toggleModal() {
+				this.$refs.modalInput.toggleModal();
 			},
 			updateCustomer(newCustomerData) {
 				this.$store.dispatch(`customerModule/${UPDATE_CUSTOMER}`, { id: this.customerData._id, newCustomerData })

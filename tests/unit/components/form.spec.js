@@ -4,8 +4,14 @@ import Form from '@/components/Form.vue';
 function wrapperFactory(props, errorMessage = "") {
 	return mount(Form, {
 		...props,
-		computed: {
-			errors: () => errorMessage
+		mocks: {
+			$store: {
+				state: {
+					authModule: {
+						errors: errorMessage
+					}
+				}
+			}
 		}
 	});
 }
