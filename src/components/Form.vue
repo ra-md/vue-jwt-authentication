@@ -23,7 +23,7 @@
           <span class="error-message">{{ errors[0] }}</span>
         </ValidationProvider>
         <div v-show="errors">
-          <p class="error-message">{{ errors }}</p>
+          <span class="error-message">{{ errors }}</span>
         </div>
 				<input :disabled="!isValid" :class="{ 'disabled-btn': !isValid }" class="btn" type="submit" value="submit">
 			</form>
@@ -35,7 +35,7 @@
   import { mapState } from 'vuex';
   import { SET_ERROR } from '@/store/mutations.type';
   import { ValidationProvider, extend } from 'vee-validate';
-  import { required, email, min } from 'vee-validate/dist/rules';
+  import { required, email, min } from 'vee-validate/dist/rules.umd.js';
 
   extend('required', {
     ...required,
