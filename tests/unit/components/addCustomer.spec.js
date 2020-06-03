@@ -1,8 +1,9 @@
 import { mount } from '@vue/test-utils';
 import AddCustomer from '@/components/AddCustomer';
+import { ADD_CUSTOMER } from '@/store/actions.type';
 
 describe('AddCustomer', () => {
-	it('dispatch sebuah actions kalau addCustomer() telah dipanggil', async () => {
+	it('bisa dispatch kalau addCustomer() dipanggil', () => {
 		const mockStore = { dispatch: jest.fn().mockResolvedValue() };
 
 		const wrapper = mount(AddCustomer, {
@@ -18,8 +19,7 @@ describe('AddCustomer', () => {
 		}
 
 		wrapper.vm.addCustomer(customerData);
-		await wrapper.vm.$nextTick();
 
-		expect(mockStore.dispatch).toHaveBeenCalledWith('customerModule/addCustomer', customerData);
+		expect(mockStore.dispatch).toHaveBeenCalledWith(`customerModule/${ADD_CUSTOMER}`, customerData);
 	});
 });

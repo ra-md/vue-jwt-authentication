@@ -25,11 +25,11 @@ describe('Form.vue', () => {
 		expect(wrapper.findAll('.error-message').at(2).text()).toBe(errorMessage);
 	});
 
-	it('harus bisa emit', () => {
+	it('harus bisa emit dengan benar', () => {
 		const emailAndPassword = {
 			email: 'test@test.com',
 			password: 'test'
-		}
+		};
 
 		const wrapper = wrapperFactory({
 			data: () => {
@@ -37,8 +37,10 @@ describe('Form.vue', () => {
 			}
 		});
 
-		wrapper.vm.submit();
+		wrapper.find('#btn-submit').trigger('click');
 
-		expect(wrapper.emitted().submit[0]).toEqual([emailAndPassword]);
+		// wrapper.vm.submit();
+
+		expect(wrapper.emitted().submit[0][0]).toEqual(emailAndPassword);
 	});
 });

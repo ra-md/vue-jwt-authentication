@@ -2,13 +2,23 @@ import { mount } from '@vue/test-utils';
 import ModalInput from '@/components/ModalInput';
 
 describe('ModalInput.vue', () => {
-	it('tutup modal kalau button cancel diklik', () => {
-		const wrapper = mount(ModalInput);
+	it('bisa emit dengan benar', () => {
+		const customer = {
+			name: 'test',
+			email: 'test@test.com',
+			balance: 100
+		};
 
-		// wrapper.find('#btn-cancel').trigger('click');
-		wrapper.vm.toggleModal();
-		console.log(wrapper.html());
+		const wrapper = mount(ModalInput, {
+			data() {
+				return {
+					...customer
+				};
+			}
+		});
 
-		expect(wrapper.exists()).toBe(true);
+		wrapper.vm.submit();
+
+		expect(wrapper.emitted().submit[0][0]).toEqual(customer);
 	});
 });

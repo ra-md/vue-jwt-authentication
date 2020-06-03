@@ -4,8 +4,8 @@
 		<td>{{ customerData.email }}</td>
 		<td>{{ customerData.balance }}</td>
 		<td v-if="isAuthenticated">
-			<button @click="toggleModal" class="btn btn-action">Edit</button>
-			<button @click="deleteCustomer" class="btn btn-action">Delete</button>
+			<button id="btn-edit" @click="toggleModal" class="btn btn-action">Edit</button>
+			<button id="btn-delete" @click="deleteCustomer" class="btn btn-action">Delete</button>
 		</td>
 		<ModalInput 
 			ref="modalInput"
