@@ -3,7 +3,7 @@ import { SET_ERROR, SET_AUTH, PURGE_AUTH } from '@/store/mutations.type';
 
 jest.mock('@/api');
 
-describe('mutations', () => {
+describe('auth.module', () => {
 	it('bisa melakukan set error ke state', () => {
 		const state = {
 			errors: null
@@ -43,8 +43,4 @@ describe('mutations', () => {
 		expect(state).toEqual({ isAuthenticated: false });
 		expect(mockLocalStorage).toHaveBeenCalledWith('token');
 	});
-});
-
-describe('actions', () => {
-	
 });

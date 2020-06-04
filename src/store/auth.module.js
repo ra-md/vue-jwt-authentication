@@ -1,7 +1,7 @@
 import { REGISTER, LOGIN } from './actions.type';
 import { SET_ERROR, SET_AUTH, PURGE_AUTH } from './mutations.type';
 import api from '@/api';
-import jwtService from '@/util/jwtService';
+import jwtService from '@/utils/jwtService';
 
 const state = {
 	isAuthenticated: !!jwtService.getToken(),

@@ -7,7 +7,7 @@ const state = {
 	errors: null
 };
 
-const mutations = {
+export const mutations = {
 	[SET_CUSTOMERS](state, customers) {
 		state.customers = customers;
 	},
@@ -16,7 +16,7 @@ const mutations = {
 	}
 };
 
-const actions = {
+export const actions = {
 	async [FETCH_CUSTOMERS]({ commit }) {
 		try {
 			const { data } = await api.getCustomers();

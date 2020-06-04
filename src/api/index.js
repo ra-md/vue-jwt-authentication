@@ -1,8 +1,8 @@
 import axios from 'axios';
+import jwtService from '@/utils/jwtService';
 import router from '@/router';
 import store from '@/store';
 import { PURGE_AUTH, SET_ERROR } from '@/store/mutations.type';
-import jwtService from '@/util/jwtService';
 
 const API_URL = 'http://localhost:3000';
 const api = axios.create({ baseURL: API_URL });
