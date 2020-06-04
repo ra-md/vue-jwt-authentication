@@ -24,7 +24,7 @@ function wrapperFactory(isAuthenticated, dispatch = null, customerId = null) {
 
 describe('Table.vue', () => {
 	const mockDispatch = jest.fn().mockResolvedValue();
-	const customerId = '013916371210281';
+	const customerId = 'Fake id';
 
 	it('tampilkan modal kalau button edit diklik', async () => {
 		const wrapper = wrapperFactory(true);

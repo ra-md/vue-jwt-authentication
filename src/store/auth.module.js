@@ -8,7 +8,7 @@ const state = {
 	errors: null
 };
 
-const mutations = {
+export const mutations = {
 	[SET_ERROR](state, error) {
 		state.errors = error;
 	},
@@ -22,7 +22,7 @@ const mutations = {
 	}
 };
 
-const actions = {
+export const actions = {
 	[REGISTER]({ commit }, credentials) {
 		return new Promise((resolve) => {
 			commit(SET_ERROR, null);
