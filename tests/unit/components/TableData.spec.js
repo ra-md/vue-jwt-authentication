@@ -52,7 +52,7 @@ describe('Table.vue', () => {
 	it('bisa dispatch kalau deleteCustomer() dipanggil', () => {
 		const wrapper = wrapperFactory(true, mockDispatch, customerId);
 
-		wrapper.vm.deleteCustomer();
+		wrapper.find('#btn-delete').trigger('click');
 
 		expect(mockDispatch).toHaveBeenCalledWith(`customerModule/${DELETE_CUSTOMER}`, customerId);
 	});

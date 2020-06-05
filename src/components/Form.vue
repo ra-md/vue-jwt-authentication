@@ -2,7 +2,7 @@
 	<div class="auth">
 		<div class="card">
 			<slot></slot>
-			<form class="flex-column">
+			<form class="flex-column" @submit.prevent="submit">
         <ValidationProvider class="flex-column" rules="required|email" v-slot="{ errors }">
   				<input
             class="text-input"
@@ -25,7 +25,7 @@
         <div v-show="errors">
           <span class="error-message">{{ errors }}</span>
         </div>
-				<input id="btn-submit" @click="submit" :disabled="!isValid" :class="{ 'disabled-btn': !isValid }" class="btn" type="submit" value="submit">
+				<input id="btn-submit" :disabled="!isValid" :class="{ 'disabled-btn': !isValid }" class="btn" type="submit" value="submit">
 			</form>
 		</div>
 	</div>
@@ -77,8 +77,7 @@
       this.removeErrorMessage();
     },
 		methods: {
-			submit(e) {
-        e.preventDefault();
+			submit() {
 				this.$emit('submit', { email: this.email, password: this.password });
 			},
       removeErrorMessage() {

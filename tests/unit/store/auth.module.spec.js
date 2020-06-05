@@ -16,7 +16,7 @@ describe('auth.module', () => {
 		expect(state).toEqual({ errors: errorMessage });
 	});
 
-	it('bisa melakukan set auth ke state dan set token ke localStorege', () => {
+	it('bisa melakukan set auth ke state dan set token ke localStorage', () => {
 		const mockLocalStorage = Storage.prototype.setItem = jest.fn();
 
 		const state = {
@@ -31,7 +31,7 @@ describe('auth.module', () => {
 		expect(mockLocalStorage).toHaveBeenCalledWith('token', fakeToken);
 	});
 
-	it('bisa melakukan purge auth dan remove token pada localStorege', () => {
+	it('bisa melakukan purge auth dan remove token pada localStorage', () => {
 		const mockLocalStorage = Storage.prototype.removeItem = jest.fn();
 
 		const state = {

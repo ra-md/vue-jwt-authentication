@@ -32,14 +32,13 @@ describe('Form.vue', () => {
 		};
 
 		const wrapper = wrapperFactory({
+			attachToDocument: true,
 			data: () => {
 				return emailAndPassword;
 			}
 		});
 
 		wrapper.find('#btn-submit').trigger('click');
-
-		// wrapper.vm.submit();
 
 		expect(wrapper.emitted().submit[0][0]).toEqual(emailAndPassword);
 	});
