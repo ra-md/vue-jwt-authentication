@@ -26,8 +26,8 @@
   }
 
   :root {
-    --primary-color: blue;
-    --danger-color: red;
+    --primary-color: #007bff;
+    --danger-color: #dc3545;
   }
 
   body {
@@ -56,7 +56,7 @@
   }
 
   .btn:focus {
-    background-color: black;
+    background-color: #343a40;
   }
 
   .text-input {
