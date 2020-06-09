@@ -4,7 +4,8 @@ import router from '@/router';
 import store from '@/store';
 import { PURGE_AUTH, SET_ERROR } from '@/store/mutations.type';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://restifyapi.herokuapp.com';
+
 const api = axios.create({ baseURL: API_URL });
 
 api.interceptors.response.use(response => {
