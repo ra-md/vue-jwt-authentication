@@ -91,6 +91,7 @@
 
 	@media (max-width: 768px) {
 		button {
+			padding: .7em .6em;
 			margin-left: .5em;
 		}
 	}
