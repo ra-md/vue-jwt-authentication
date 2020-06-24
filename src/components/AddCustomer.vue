@@ -3,7 +3,8 @@
 </template>
 
 <script>
-	import { FETCH_CUSTOMERS, ADD_CUSTOMER } from '@/store/actions.type';
+	import api from '@/api';
+	import { FETCH_CUSTOMERS } from '@/store/actions.type';
 	import ModalInput from './ModalInput';
 
 	export default {
@@ -16,7 +17,7 @@
 				this.$refs.modalInput.toggleModal();
 			},
 			addCustomer(customerData) {
-				this.$store.dispatch(`customerModule/${ADD_CUSTOMER}`, customerData)
+				api.addCustomer(customerData)
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
 						this.$refs.modalInput.resetInput();

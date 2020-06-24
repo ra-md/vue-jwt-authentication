@@ -1,4 +1,4 @@
-import { FETCH_CUSTOMERS, ADD_CUSTOMER, UPDATE_CUSTOMER, DELETE_CUSTOMER } from './actions.type';
+import { FETCH_CUSTOMERS } from './actions.type';
 import { SET_CUSTOMERS, SET_ERROR } from './mutations.type';
 import api from '@/api';
 
@@ -24,15 +24,6 @@ export const actions = {
 		} catch (error) {
 			commit(SET_ERROR, error);
 		}
-	},
-	[ADD_CUSTOMER](context, data) {
-		return api.addCustomer(data);
-	},
-	[UPDATE_CUSTOMER](context, data) {
-		return api.updateCustomer(data.id, data.newCustomerData);
-	},
-	[DELETE_CUSTOMER](context, id) {
-		return api.deleteCustomer(id);
 	}
 };
 

@@ -15,7 +15,8 @@
 </template>
 
 <script>
-	import { UPDATE_CUSTOMER, DELETE_CUSTOMER, FETCH_CUSTOMERS } from '@/store/actions.type';
+	import api from '@/api';
+	import { FETCH_CUSTOMERS } from '@/store/actions.type';
 	import { mapState } from 'vuex';
 	import ModalInput from './ModalInput';
 
@@ -40,13 +41,13 @@
 				this.$refs.modalInput.toggleModal();
 			},
 			updateCustomer(newCustomerData) {
-				this.$store.dispatch(`customerModule/${UPDATE_CUSTOMER}`, { id: this.customerData._id, newCustomerData })
+				api.updateCustomer(this.customerData._id, newCustomerData)
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
 					});
 			},
 			deleteCustomer() {
-				this.$store.dispatch(`customerModule/${DELETE_CUSTOMER}`, this.customerData._id)
+				api.deleteCustomer(this.customerData._id)
 					.then(() => {
 						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
 					});
