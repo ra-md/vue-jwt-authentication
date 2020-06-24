@@ -1,6 +1,5 @@
 import { mount } from '@vue/test-utils';
 import TableData from '@/components/TableData';
-import { UPDATE_CUSTOMER, DELETE_CUSTOMER } from '@/store/actions.type';
 
 function wrapperFactory(isAuthenticated, dispatch = null, customerId = null) {
 	return mount(TableData, {
@@ -33,27 +32,5 @@ describe('Table.vue', () => {
 		await wrapper.vm.$nextTick();
 
 		expect(wrapper.find('.modal').exists()).toBe(true);
-	});
-
-	it('bisa dispatch kalau updateCustomer() dipanggil', () => {
-		const newCustomerData = {
-			name: 'test',
-			email: 'test@test.com',
-			balance: 100
-		};
-
-		const wrapper = wrapperFactory(true, mockDispatch, customerId);
-
-		wrapper.vm.updateCustomer(newCustomerData);
-
-		expect(mockDispatch).toHaveBeenCalledWith(`customerModule/${UPDATE_CUSTOMER}`, { id: customerId, newCustomerData });
-	});
-
-	it('bisa dispatch kalau deleteCustomer() dipanggil', () => {
-		const wrapper = wrapperFactory(true, mockDispatch, customerId);
-
-		wrapper.find('#btn-delete').trigger('click');
-
-		expect(mockDispatch).toHaveBeenCalledWith(`customerModule/${DELETE_CUSTOMER}`, customerId);
 	});
 });
