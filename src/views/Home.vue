@@ -1,7 +1,10 @@
 <template>
   <div class="home">
-    <span class="error-message" v-if="errors">{{ errors }}</span>
-    <Table v-else :customers="customers"/>
+    <h1 v-if="customers.length === 0">Loading...</h1>
+    <div v-else class="home__table">
+      <span class="error-message" v-if="errors">{{ errors }}</span>
+      <Table v-else :customers="customers"/>
+    </div>
   </div>
 </template>
 
@@ -35,14 +38,18 @@
 <style scoped>
   .home {
     padding: 4em 0;
+    text-align: center;
+  }
+
+  .home__table {
     white-space: nowrap;
     display: grid;
     grid-auto-flow: column;
     overflow-x: auto;
   }
 
-  .home:before,
-  .home:after {
+  .home__table:before,
+  .home__table:after {
     content: '';
     width: 10px;
   }
