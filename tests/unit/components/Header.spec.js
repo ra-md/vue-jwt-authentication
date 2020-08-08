@@ -1,8 +1,15 @@
-import { mount } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
+import VueRouter from 'vue-router';
 import Header from '@/components/Header.vue';
+
+const localVue = createLocalVue();
+localVue.use(VueRouter);
+const router = new VueRouter();
 
 function wrapperFactory(isAuthenticated) {
 	return mount(Header, {
+		localVue,
+		router,
 		stubs: ['router-link'],
 		mocks: {
 			$store: {

@@ -4,7 +4,13 @@ import Form from '@/components/Form.vue';
 function wrapperFactory(props, errorMessage = "") {
 	return mount(Form, {
 		...props,
+		propsData: {
+			name: 'testing',
+		},
 		mocks: {
+			$route: {
+				name: ''
+			},
 			$store: {
 				state: {
 					authModule: {
@@ -34,12 +40,15 @@ describe('Form.vue', () => {
 		const wrapper = wrapperFactory({
 			attachToDocument: true,
 			data: () => {
-				return emailAndPassword;
+				return {
+					loading: false,
+					...emailAndPassword
+				};
 			}
 		});
 
 		wrapper.find('#btn-submit').trigger('click');
-
+		
 		expect(wrapper.emitted().submit[0][0]).toEqual(emailAndPassword);
 	});
 });
