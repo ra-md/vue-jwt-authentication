@@ -1,0 +1,17 @@
+@mixin btn-bg($bg) {
+  background: $bg;
+
+  &:hover {
+    background: lighten($bg, 18%);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px black;
+    outline: none;
+  }
+
+  &:disabled {
+    background: lighten($bg, 40%);
+    cursor: not-allowed;
+  }
+}

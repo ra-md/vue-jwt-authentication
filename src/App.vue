@@ -18,20 +18,17 @@
   };
 </script>
 
-<style>
+<style lang="scss">
+  @import '@/assets/scss/_colors.scss';
+  @import '@/assets/scss/_mixin.scss';
 
   * {
     margin: 0;
     box-sizing: border-box;
   }
 
-  :root {
-    --primary-color: #007bff;
-    --danger-color: #dc3545;
-  }
-
   body {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: black;
@@ -43,41 +40,37 @@
   }
   
   .btn {
-    background: var(--primary-color);
     border: none;
     padding: .7em 1.5em;
     color: white;
     border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
+
+    &--primary {
+      @include btn-bg($primary-color);
+    }
+
+    &--danger {
+      @include btn-bg($danger-color);
+    }
   }
 
-  .btn:hover {
-    opacity: 0.7;
-  }
-
-  .btn:focus {
-    background-color: #343a40;
-  }
-
-  .text-input {
+  .input-text {
     margin: .7em 0;
     background: #f5f5f5;
     border-radius: 4px;
     padding: 0.7em;
     border: 2px solid #cecece;
-  }
 
-  input:focus {
-    border-color: var(--primary-color);
-    outline: none;
-  }
-
-  .error {
-    border-color: red!important;
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+    }
   }
 
   .error-message {
-    color: red;
+    color: $danger-color;
     text-align: center;
   }
 </style>

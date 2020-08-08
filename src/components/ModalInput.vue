@@ -4,28 +4,28 @@
 			<label>Name</label> 
 			<input 
 				v-on:keyup.enter="$event.target.nextElementSibling.nextElementSibling.focus()" 
-				class="text-input" 
+				class="input-text" 
 				placeholder="name" 
 				v-model="name" type="text">
 			<label>Email</label>
 			<input 
 				v-on:keyup.enter="$event.target.nextElementSibling.nextElementSibling.focus()" 
-				class="text-input" 
+				class="input-text" 
 				placeholder="email" 
 				v-model="email" 
 				type="text">
 			<label>Balance</label>
 			<input 
 				v-on:keyup.enter="submit" 
-				class="text-input" 
+				class="input-text" 
 				placeholder="balance" 
 				v-model="balance" 
 				type="number">
 		</template>
 		<template v-slot:button>
 			<div class="btn-group">
-				<button @click="toggleModal" class="btn">Cancel</button>
-				<button @click="submit" class="btn">Submit</button>
+				<button @click="toggleModal" class="btn btn--primary">Cancel</button>
+				<button @click="submit" class="btn btn--primary">Submit</button>
 			</div>
 		</template>
 	</Modal>
@@ -57,6 +57,13 @@
 				email: this.customerData.email,
 				balance: this.customerData.balance
 			};
+		},
+		watch: {
+			customerData() {
+				this.name = this.customerData.name;
+				this.email = this.customerData.email;
+				this.balance = this.customerData.balance;
+			}
 		},
 		methods: {
 			toggleModal() {

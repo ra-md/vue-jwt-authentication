@@ -1,13 +1,11 @@
 <template>
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Balance</th>
-				<th v-if="isAuthenticated">Actions</th>
-			</tr>
-		</thead>
+	<table class="table">
+		<tr class="table__row">
+			<th class="table__head">Name</th>
+			<th class="table__head">Email</th>
+			<th class="table__head">Balance</th>
+			<th v-if="isAuthenticated" class="table__head">Actions</th>
+		</tr>
 		<tbody v-for="(customer, index) in customers" :key="index">
 			<TableData :customerData="customer"/>
 		</tbody>
@@ -37,32 +35,18 @@
 	};
 </script>
 
-<style>
-  table {
+<style lang="scss">
+	.table {
 		border-spacing: 0;
-  }
+		max-height: 3em;
 
-	tr {
-		text-align: center;
-	}
+		.table__row {
+			text-align: center;
+		}
 
-	th {
-		border-bottom: thin solid black;
-	}
-
-	th {
-		padding: 1em;
-	}
-
-	td {
-		border-bottom: thin solid black;
-		padding: 1em 0;
-	}
-
-	.btn-add {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 1em 0;
+		.table__head {
+			border-bottom: thin solid black;
+			padding: 1em;
+		}
 	}
 </style>

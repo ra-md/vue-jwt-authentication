@@ -1,33 +1,41 @@
 <template>
-	<div class="auth">
-		<div class="card">
-			<slot></slot>
-			<form class="flex-column" @submit.prevent="submit">
-        <ValidationProvider class="flex-column" rules="required|email" v-slot="{ errors }">
-  				<input
-            class="text-input"
-            :class="{'error': errors[0]}" 
-            v-model="email" 
-            v-on:keyup.enter="$event.target.nextElementSibling.focus()" 
-            type="text" 
-            placeholder="Email">
-          <span class="error-message">{{ errors[0] }}</span>
-        </ValidationProvider>
-        <ValidationProvider class="flex-column" rules="min:3|required" v-slot="{ errors }">
-  				<input
-            class="text-input"
-            :class="{'error': errors[0]}" 
-            v-model="password" 
-            type="password" 
-            placeholder="Password">
-          <span class="error-message">{{ errors[0] }}</span>
-        </ValidationProvider>
-        <div v-show="errors">
-          <span class="error-message">{{ errors }}</span>
-        </div>
-				<input id="btn-submit" :disabled="!isValid" :class="{ 'disabled-btn': !isValid }" class="btn" type="submit" value="submit">
-			</form>
-		</div>
+	<div class="card">
+		<h2>{{ name }}</h2>
+		<form class="form" @submit.prevent="submit">
+      <ValidationProvider class="form__validation" rules="required|email" v-slot="{ errors }">
+				<input
+          class="input-text"
+          :class="{'error-border': errors[0]}" 
+          v-model="email" 
+          v-on:keyup.enter="$event.target.nextElementSibling.focus()" 
+          type="text" 
+          placeholder="Email">
+        <span class="error-message">{{ errors[0] }}</span>
+      </ValidationProvider>
+      <ValidationProvider class="form__validation" rules="min:3|required" v-slot="{ errors }">
+				<input
+          class="input-text"
+          :class="{'error-border': errors[0]}" 
+          v-model="password" 
+          type="password" 
+          placeholder="Password">
+        <span class="error-message">{{ errors[0] }}</span>
+      </ValidationProvider>
+      <div v-show="errors">
+        <span class="error-message">{{ errors }}</span>
+      </div>
+			<input
+        class="btn btn--primary"
+        id="btn-submit"
+        :disabled="!isValid || loading"
+        type="submit"
+        :value="loading ? 'Loading...' : name"
+      >
+		</form>
+    <div v-if="$route.name === 'login'" class="testing">
+      <p class="testing__text">email: test@test.com</p>
+      <p class="testing__text">password: test</p>
+    </div>
 	</div>
 </template>
 
@@ -59,12 +67,26 @@
     components: {
       ValidationProvider
     },
+    props: {
+      name: {
+        type: String,
+        required: true
+      }
+    },
 		data() {
 			return {
 				email: '',
-				password: ''
+				password: '',
+        loading: false
 			};
 		},
+    watch: {
+      errors(newVal, oldVal) {
+        if (!oldVal) {
+          this.loading = false;
+        }
+      }
+    },
     computed: {
       ...mapState({
         errors: state => state.authModule.errors
@@ -78,6 +100,7 @@
     },
 		methods: {
 			submit() {
+        this.loading = true;
 				this.$emit('submit', { email: this.email, password: this.password });
 			},
       removeErrorMessage() {
@@ -87,47 +110,64 @@
 	};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import '@/assets/scss/_colors.scss';
+
 	.card {
     padding: 2em;
     background: white;
     color: black;
     box-shadow: 0 3px 7px 1px rgba(0,0,0,0.3);
     border-radius: 4px;
-  }
-
-	.auth {
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    width: 50%;
   }
 
-  .flex-column {
-    display: flex;
-    flex-direction: column;
+  .form {
+    &__validation {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .btn {
+    width: 100%;
     margin-top: .7em;
   }
 
-  .disabled-btn {
-    opacity: 0.3;
-    cursor: default;
+  .testing {
+    display: inline-flex;
+    padding-top: 1em;
+
+    &__text {
+      padding: 0 0.5em;
+    }
+  }
+
+  .error-border {
+    border-color: $danger-color!important;
   }
 
   @media (max-width: 768px) {
-    .auth {
-      width: 100%;
+    .card {
+      width: 90%;
+    }
+
+    .testing {
+      display: block;
+
+      &__text {
+        padding: 0.2em 0;
+      }
     }
   }
 
   @media (min-width: 1024px) {
-    .auth {
+    .card {
       width: 30%;
     }
   }

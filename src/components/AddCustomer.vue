@@ -17,10 +17,18 @@
 				this.$refs.modalInput.toggleModal();
 			},
 			addCustomer(customerData) {
+				this.$emit('set-loading', true);
+
 				api.addCustomer(customerData)
 					.then(() => {
-						this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
+						this.fetchCustomers();
 						this.$refs.modalInput.resetInput();
+					});
+			},
+			fetchCustomers() {
+				this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`)
+					.then(() => {
+						this.$emit('set-loading', false);
 					});
 			}
 		}

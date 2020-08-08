@@ -1,9 +1,5 @@
 <template>
-	<div>
-	<Form @submit="login">
-		<h2>Login</h2>
-	</Form>
-	</div>
+	<Form @submit="login" name="Login" />
 </template>
 
 <script>

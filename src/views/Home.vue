@@ -1,9 +1,10 @@
 <template>
   <div class="home">
-    <h1 v-if="customers.length === 0">Loading...</h1>
+    <h1 v-if="loading">Loading...</h1>
+    <h1 v-else-if="errors" class="error-message">{{ errors }}</h1>
+    <h1 v-else-if="customers.length === 0">0 Data</h1>
     <div v-else class="home__table">
-      <span class="error-message" v-if="errors">{{ errors }}</span>
-      <Table v-else :customers="customers"/>
+      <Table :customers="customers"/>
     </div>
   </div>
 </template>
@@ -18,7 +19,12 @@
     components: {
       Table
     },
-    beforeMount() {
+    data() {
+      return {
+        loading: true
+      };
+    },
+    created() {
       this.fetchData();
     },
     computed: {
@@ -29,7 +35,10 @@
     },
     methods: {
       fetchData() {
-        this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`);
+        this.$store.dispatch(`customerModule/${FETCH_CUSTOMERS}`)
+          .then(() => {
+            this.loading = false;
+          });
       }
     }
   };

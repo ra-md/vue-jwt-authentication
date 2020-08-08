@@ -1,14 +1,12 @@
 <template>
 	<div>
-	<Form @submit="register">
-		<h2>Register</h2>
-	</Form>
+	<Form @submit="register" name="Register" />
 	<Modal ref="modal">
 		<template v-slot:content>
-			<p class="modal-text">akun berhasil dibuat silahkan login</p>
+			<p class="modal__text">akun berhasil dibuat silahkan login</p>
 		</template>
 		<template v-slot:button>
-			<button class="btn" @click="$router.push('/login')">ok</button>
+			<button class="btn btn--primary" @click="$router.push('/login')">ok</button>
 		</template>
 	</Modal>
 	</div>
@@ -36,8 +34,8 @@
 	};
 </script>
 
-<style>
-	.modal-text {
+<style scoped>
+	.modal__text {
 		margin-bottom: 1em;
 	}
 </style>
