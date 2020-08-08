@@ -68,9 +68,9 @@
       ValidationProvider
     },
     props: {
-      fucek: {
+      name: {
         type: String,
-        default: 'default'
+        required: true
       }
     },
 		data() {
